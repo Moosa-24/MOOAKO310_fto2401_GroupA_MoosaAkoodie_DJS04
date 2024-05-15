@@ -5,6 +5,7 @@ const app = {
     matches: [],
     
     init() {
+        this.matches = books.slice();
         this.renderInitialBooks();
         this.renderGenres();
         this.renderAuthors();
@@ -13,8 +14,7 @@ const app = {
     },
 
     renderInitialBooks() {
-        this.matches = books.slice(0, BOOKS_PER_PAGE);
-        this.renderBooks(this.matches);
+        this.renderBooks(this.matches.slice(0, BOOKS_PER_PAGE));
         this.updateListButton();
     },
 
@@ -110,21 +110,27 @@ const app = {
     },
 
     handleThemeChange(event) {
-        event.preventDefault();
-        const formData = new FormData(event.target);
-        const { theme } = Object.fromEntries(formData);
-        this.applyTheme(theme);
-        this.closeSettingsOverlay();
+        this.handleFormSubmit(event, formData => {
+            const { theme } = formData;
+            this.applyTheme(theme);
+            this.closeSettingsOverlay();
+        });
     },
 
     handleSearch(event) {
+        this.handleFormSubmit(event, filters => {
+            this.filterBooks(filters);
+            this.page = 1;
+            this.updateListButton();
+            this.closeSearchOverlay();
+        });
+    },
+
+    handleFormSubmit(event, callback) {
         event.preventDefault();
         const formData = new FormData(event.target);
-        const filters = Object.fromEntries(formData);
-        this.filterBooks(filters);
-        this.page = 1;
-        this.updateListButton();
-        this.closeSearchOverlay();
+        const formValues = Object.fromEntries(formData);
+        callback(formValues);
     },
 
     filterBooks(filters) {
@@ -144,13 +150,14 @@ const app = {
     },
 
     loadMoreBooks() {
-        const startIndex = this.page * BOOKS_PER_PAGE;
-        const endIndex = (this.page + 1) * BOOKS_PER_PAGE;
-        const newBooks = this.matches.slice(startIndex, endIndex);
-        this.renderBooks(newBooks);
-        this.page++;
+        const start = this.page * BOOKS_PER_PAGE;
+        const end = start + BOOKS_PER_PAGE;
+        const booksToRender = this.matches.slice(start, end);
+        this.renderBooks(booksToRender);
+        this.page += 1;
         this.updateListButton();
     },
+
 
     updateListButton() {
         const remaining = Math.max(this.matches.length - (this.page * BOOKS_PER_PAGE), 0);
