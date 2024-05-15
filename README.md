@@ -4,26 +4,6 @@ Dive into the delightful world of "Book Connect," where literary adventures awai
 
 The "Book Connect" project provides an opportunity for students to refine a fully functional version of an application. The focus of this project is to enhance the code's maintainability, extendibility, and readability by applying concepts of objects and functions for abstraction. This will not only streamline future modifications but also consolidate students' understanding of higher-level programming concepts, including documentation, Styleguides, and abstraction principles.
 
-![alt text](image.png)
-
-#### Goals
-
-- **Refactor Existing Code**: Analyse and refactor the given JavaScript and HTML code to improve its structure using objects and functions.
-- **Implement Abstraction**: Use abstraction to hide the complex reality while exposing only the necessary parts. This involves creating more generic functions that can perform tasks in a more flexible way.
-- **Documentation**: Write clear comments and documentation for the new code structure to explain the purpose and functionality of code blocks, functions, and objects.
-- **Follow Styleguides**: Adhere to established coding conventions and Styleguides to ensure code readability and maintainability.
-
-#### Tasks
-
-1. **Code Analysis**: Start by understanding the current implementation of the "Book Connect" application, including its HTML structure and JavaScript functionality.
-2. **Plan Refactoring**: Identify sections of the code that can be made more abstract and modular. Look for patterns and repetitive code that can be simplified.
-3. **Implement Abstraction**:
-   - **Objects**: Define objects to represent key elements of the application, such as books, authors, and genres. Utilise the provided data (e.g., `authors`, `genres`, `books`) to populate these objects.
-   - **Functions**: Create functions that handle repetitive tasks, such as rendering the book list, handling user interactions, and applying filters.
-4. **Enhance Functionality**: Ensure that the application remains fully functional after refactoring. Test all features to confirm that users can still search, filter, and view books as intended.
-5. **Documentation and Comments**: Throughout the refactoring process, document your code. Provide comments that explain the purpose and functionality of objects and functions.
-6. **Adherence to Styleguides**: Ensure your code follows JavaScript and HTML coding standards and best practices for readability and maintainability.
-
 #### Discussion and Reflection
 
 After completing the tasks, prepare a brief presentation for your coaching group on the following:
@@ -32,8 +12,19 @@ After completing the tasks, prepare a brief presentation for your coaching group
 - Any challenges faced during the refactoring process and how they were overcome.
 - Reflections on how this exercise has deepened your understanding of JavaScript programming concepts.
 
-#### Submission Guidelines
+Refactoring for Readability and Maintainability
 
-Submit the refactored version of the "Book Connect" application, including all HTML, CSS, and JavaScript files. Ensure that your code is well-documented and adheres to the specified Styleguides. Include a written report covering the discussion and reflection points outlined above.
+1. Rationale behind Refactoring:
+Identified areas of the codebase requiring improved readability and maintainability.
+Chose to refactor the code into objects and functions to promote modularity, reusability, and clarity because that was our task.
 
-Make sure to submit your project to the LMS on the DJS03 Project Tab.
+2. Abstraction for Maintainability and Extendability:
+Abstracted basically everything into functions and objects, thus reducing code duplication and improving readability.
+This also allows an easy addition of new features or modification of existing ones without affecting other parts of the application.
+
+3. Challenges Faced and Overcoming Them:
+getting the 'show more' button to work after refactoring things took me a really long time because upon inspection of the chrome browser, no errors were being shown, had to test things function by function until i found where the issue was(render books)
+
+4. Reflections on Understanding JavaScript Concepts:
+This exercise deepened understanding of JavaScript programming concepts in several ways.
+I learnt the importance of abstraction in promoting code maintainability and scalability.
