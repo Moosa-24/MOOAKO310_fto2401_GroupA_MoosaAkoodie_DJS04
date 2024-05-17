@@ -1,5 +1,4 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from './data.js';
-import { BookPreview } from './bookPreview.js';  
 
 // Defining the main application object
 const app = {
@@ -255,3 +254,42 @@ const app = {
 
 // Initializing the application
 app.init();
+
+// Define the custom element for BookPreview
+class BookPreview extends HTMLElement {
+    constructor() {
+        super();
+        this.attachShadow({ mode: 'open' });
+        const template = document.createElement('template');
+        template.innerHTML = `
+            <style>
+                /* Styles for the book preview component */
+            </style>
+            <div class="book-preview">
+                <div class="book-title"></div>
+                <div class="book-author"></div>
+                <div class="book-description"></div>
+            </div>
+        `;
+        this.shadowRoot.appendChild(template.content.cloneNode(true));
+    }
+
+    connectedCallback() {
+        this.fetchBookData();
+    }
+
+    async fetchBookData() {
+        const bookId = this.getAttribute('book-id');
+        const response = await fetch(`/api/books/${bookId}`);
+        const data = await response.json();
+        this.render(data);
+    }
+
+    render(data) {
+        this.shadowRoot.querySelector('.book-title').textContent = data.title;
+        this.shadowRoot.querySelector('.book-author').textContent = `by ${data.author}`;
+        this.shadowRoot.querySelector('.book-description').textContent = data.description;
+    }
+}
+
+customElements.define('book-preview', BookPreview);
