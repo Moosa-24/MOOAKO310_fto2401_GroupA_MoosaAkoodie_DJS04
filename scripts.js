@@ -1,4 +1,5 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from './data.js';
+import { BookPreview } from './bookPreview.js';  
 
 // Defining the main application object
 const app = {
